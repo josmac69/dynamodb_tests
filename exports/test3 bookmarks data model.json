@@ -1,0 +1,317 @@
+{
+  "ModelName": "test3 bookmarks data model",
+  "ModelMetadata": {
+    "Author": "",
+    "DateCreated": "Mar 31, 2023, 10:57 PM",
+    "DateLastModified": "Mar 31, 2023, 10:57 PM",
+    "Description": "",
+    "AWSService": "Amazon DynamoDB",
+    "Version": "3.0"
+  },
+  "DataModel": [
+    {
+      "TableName": "CustomerBookmark",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "customerId",
+          "AttributeType": "S"
+        },
+        "SortKey": {
+          "AttributeName": "sk",
+          "AttributeType": "S"
+        }
+      },
+      "NonKeyAttributes": [
+        {
+          "AttributeName": "createDate",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "updateDate",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "email",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "fullName",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "userPreferences",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "folder",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "title",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "description",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "url",
+          "AttributeType": "S"
+        }
+      ],
+      "TableFacets": [
+        {
+          "FacetName": "Customer",
+          "KeyAttributeAlias": {
+            "PartitionKeyAlias": "customerId",
+            "SortKeyAlias": "type"
+          },
+          "TableData": [
+            {
+              "customerId": {
+                "S": "123"
+              },
+              "sk": {
+                "S": "CUST#123"
+              },
+              "email": {
+                "S": "shirley@example.net"
+              },
+              "fullName": {
+                "S": "Shirley Rodriguez"
+              },
+              "userPreferences": {
+                "S": "{“language”: “en”, “sort”: “date”, “sortDirection”: “ascending”}"
+              }
+            },
+            {
+              "customerId": {
+                "S": "321"
+              },
+              "sk": {
+                "S": "CUST#321"
+              },
+              "email": {
+                "S": "zhang@example.net"
+              },
+              "fullName": {
+                "S": "Zhang Wei"
+              },
+              "userPreferences": {
+                "S": "{“language”: “zh”, “sort”: “rating”, “sortDirection”: “descending”}"
+              }
+            }
+          ],
+          "NonKeyAttributes": [
+            "email",
+            "fullName",
+            "userPreferences"
+          ],
+          "DataAccess": {
+            "MySql": {}
+          }
+        },
+        {
+          "FacetName": "Bookmark",
+          "KeyAttributeAlias": {
+            "PartitionKeyAlias": "customerId",
+            "SortKeyAlias": "url"
+          },
+          "TableData": [
+            {
+              "customerId": {
+                "S": "123"
+              },
+              "sk": {
+                "S": "https://aws.amazon.com"
+              },
+              "createDate": {
+                "S": "2020-03-25T09:16:46-07:00"
+              },
+              "updateDate": {
+                "S": "2020-03-25T09:16:46-07:00"
+              },
+              "folder": {
+                "S": "Cloud"
+              },
+              "title": {
+                "S": "AWS"
+              },
+              "description": {
+                "S": "Amazon Web Services"
+              },
+              "url": {
+                "S": "https://aws.amazon.com"
+              }
+            },
+            {
+              "customerId": {
+                "S": "123"
+              },
+              "sk": {
+                "S": "https://console.aws.amazon.com"
+              },
+              "createDate": {
+                "S": "2020-03-25T09:16:43-07:00"
+              },
+              "updateDate": {
+                "S": "2020-03-25T09:16:43-07:00"
+              },
+              "folder": {
+                "S": "Cloud"
+              },
+              "title": {
+                "S": "AWS Console"
+              },
+              "description": {
+                "S": "Web console"
+              },
+              "url": {
+                "S": "https://console.aws.amazon.com"
+              }
+            },
+            {
+              "customerId": {
+                "S": "321"
+              },
+              "sk": {
+                "S": "https://aws.amazon.com"
+              },
+              "createDate": {
+                "S": "2020-03-25T09:16:45-07:00"
+              },
+              "updateDate": {
+                "S": "2020-03-25T09:16:45-07:00"
+              },
+              "folder": {
+                "S": "Tools"
+              },
+              "title": {
+                "S": "AWS"
+              },
+              "description": {
+                "S": "Amazon Web Services"
+              },
+              "url": {
+                "S": "https://aws.amazon.com"
+              }
+            },
+            {
+              "customerId": {
+                "S": "321"
+              },
+              "sk": {
+                "S": "https://docs.aws.amazon.com"
+              },
+              "createDate": {
+                "S": "2020-03-25T09:16:46-07:00"
+              },
+              "updateDate": {
+                "S": "2020-03-25T09:16:46-07:00"
+              },
+              "folder": {
+                "S": "Docs"
+              },
+              "title": {
+                "S": "AWS Docs"
+              },
+              "description": {
+                "S": "Documentation"
+              },
+              "url": {
+                "S": "https://docs.aws.amazon.com"
+              }
+            }
+          ],
+          "NonKeyAttributes": [
+            "createDate",
+            "updateDate",
+            "folder",
+            "title",
+            "description",
+            "url"
+          ],
+          "DataAccess": {
+            "MySql": {}
+          }
+        }
+      ],
+      "GlobalSecondaryIndexes": [
+        {
+          "IndexName": "ByEmail",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "email",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        },
+        {
+          "IndexName": "ByUrl",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "url",
+              "AttributeType": "S"
+            },
+            "SortKey": {
+              "AttributeName": "customerId",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        },
+        {
+          "IndexName": "ByCustomerFolder",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "customerId",
+              "AttributeType": "S"
+            },
+            "SortKey": {
+              "AttributeName": "folder",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        }
+      ],
+      "DataAccess": {
+        "MySql": {}
+      },
+      "BillingMode": "PROVISIONED",
+      "ProvisionedCapacitySettings": {
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        },
+        "AutoScalingRead": {
+          "ScalableTargetRequest": {
+            "MinCapacity": 1,
+            "MaxCapacity": 10,
+            "ServiceRole": "AWSServiceRoleForApplicationAutoScaling_DynamoDBTable"
+          },
+          "ScalingPolicyConfiguration": {
+            "TargetValue": 70
+          }
+        },
+        "AutoScalingWrite": {
+          "ScalableTargetRequest": {
+            "MinCapacity": 1,
+            "MaxCapacity": 10,
+            "ServiceRole": "AWSServiceRoleForApplicationAutoScaling_DynamoDBTable"
+          },
+          "ScalingPolicyConfiguration": {
+            "TargetValue": 70
+          }
+        }
+      }
+    }
+  ]
+}

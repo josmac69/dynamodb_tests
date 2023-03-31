@@ -7,6 +7,7 @@ Amazon DynamoDB is a fully managed NoSQL database service provided by Amazon Web
 #### Read:
 
 * [Downloadable version of Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html#docker)
+* [LinkedIn - setup a local DynamoDB and NoSQL Workbench](https://www.linkedin.com/pulse/setup-local-dynamodb-docker-nosql-workbench-corinne-roosen/?trk=public_profile_article_view)
 
 #### Install
 

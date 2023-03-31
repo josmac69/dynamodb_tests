@@ -1,0 +1,247 @@
+{
+  "ModelName": "test1 with employee data model",
+  "ModelMetadata": {
+    "Author": "",
+    "DateCreated": "Mar 31, 2023, 10:46 PM",
+    "DateLastModified": "Mar 31, 2023, 10:46 PM",
+    "Description": "",
+    "AWSService": "Amazon DynamoDB",
+    "Version": "3.0"
+  },
+  "DataModel": [
+    {
+      "TableName": "Employee",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "LoginAlias",
+          "AttributeType": "S"
+        }
+      },
+      "NonKeyAttributes": [
+        {
+          "AttributeName": "FirstName",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "LastName",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "ManagerLoginAlias",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "Designation",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "Skills",
+          "AttributeType": "SS"
+        }
+      ],
+      "GlobalSecondaryIndexes": [
+        {
+          "IndexName": "Name",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "FirstName",
+              "AttributeType": "S"
+            },
+            "SortKey": {
+              "AttributeName": "LastName",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        },
+        {
+          "IndexName": "DirectReports",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "ManagerLoginAlias",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "INCLUDE",
+            "NonKeyAttributes": [
+              "LoginAlias",
+              "FirstName",
+              "LastName"
+            ]
+          }
+        }
+      ],
+      "TableData": [
+        {
+          "LoginAlias": {
+            "S": "johns"
+          },
+          "FirstName": {
+            "S": "John"
+          },
+          "LastName": {
+            "S": "Stiles"
+          },
+          "ManagerLoginAlias": {
+            "S": "NA"
+          },
+          "Skills": {
+            "SS": [
+              "executive management"
+            ]
+          }
+        },
+        {
+          "LoginAlias": {
+            "S": "marthar"
+          },
+          "FirstName": {
+            "S": "Martha"
+          },
+          "LastName": {
+            "S": "Rivera"
+          },
+          "ManagerLoginAlias": {
+            "S": "johns"
+          },
+          "Skills": {
+            "SS": [
+              "software",
+              "management"
+            ]
+          }
+        },
+        {
+          "LoginAlias": {
+            "S": "mateoj"
+          },
+          "FirstName": {
+            "S": "Mateo"
+          },
+          "LastName": {
+            "S": "Jackson"
+          },
+          "ManagerLoginAlias": {
+            "S": "marthar"
+          },
+          "Skills": {
+            "SS": [
+              "software"
+            ]
+          }
+        },
+        {
+          "LoginAlias": {
+            "S": "janed"
+          },
+          "FirstName": {
+            "S": "Jane"
+          },
+          "LastName": {
+            "S": "Doe"
+          },
+          "ManagerLoginAlias": {
+            "S": "marthar"
+          },
+          "Skills": {
+            "SS": [
+              "software"
+            ]
+          }
+        },
+        {
+          "LoginAlias": {
+            "S": "diegor"
+          },
+          "FirstName": {
+            "S": "Diego"
+          },
+          "LastName": {
+            "S": "Ramirez"
+          },
+          "ManagerLoginAlias": {
+            "S": "johns"
+          },
+          "Skills": {
+            "SS": [
+              "executive assistant"
+            ]
+          }
+        },
+        {
+          "LoginAlias": {
+            "S": "marym"
+          },
+          "FirstName": {
+            "S": "Mary"
+          },
+          "LastName": {
+            "S": "Major"
+          },
+          "ManagerLoginAlias": {
+            "S": "johns"
+          },
+          "Skills": {
+            "SS": [
+              "operations"
+            ]
+          }
+        },
+        {
+          "LoginAlias": {
+            "S": "janer"
+          },
+          "FirstName": {
+            "S": "Jane"
+          },
+          "LastName": {
+            "S": "Roe"
+          },
+          "ManagerLoginAlias": {
+            "S": "marthar"
+          },
+          "Skills": {
+            "SS": [
+              "software"
+            ]
+          }
+        }
+      ],
+      "DataAccess": {
+        "MySql": {
+          "sqlQuery": "select * from testDB.Employee;"
+        }
+      },
+      "BillingMode": "PROVISIONED",
+      "ProvisionedCapacitySettings": {
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        },
+        "AutoScalingRead": {
+          "ScalableTargetRequest": {
+            "MinCapacity": 1,
+            "MaxCapacity": 10,
+            "ServiceRole": "AWSServiceRoleForApplicationAutoScaling_DynamoDBTable"
+          },
+          "ScalingPolicyConfiguration": {
+            "TargetValue": 70
+          }
+        },
+        "AutoScalingWrite": {
+          "ScalableTargetRequest": {
+            "MinCapacity": 1,
+            "MaxCapacity": 10,
+            "ServiceRole": "AWSServiceRoleForApplicationAutoScaling_DynamoDBTable"
+          },
+          "ScalingPolicyConfiguration": {
+            "TargetValue": 70
+          }
+        }
+      }
+    }
+  ]
+}

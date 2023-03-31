@@ -6,10 +6,10 @@ DYNAMODB_AWSCLI := dynamodb-aws-cli.yaml
 
 # Start the containers using the specified YAML file
 start-dynamodb-only:
-	docker compose -f $(DYNAMODB_ONLY) up -d --remove-orphans
+	docker compose -f $(DYNAMODB_ONLY) up --remove-orphans
 
 start-dynamodb-aws-cli:
-	docker compose -f $(DYNAMODB_AWSCLI) up -d --remove-orphans
+	docker compose -f $(DYNAMODB_AWSCLI) up --remove-orphans
 
 # Stop and remove the containers
 stop-dynamodb-only:
