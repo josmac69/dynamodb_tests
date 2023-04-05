@@ -1,9 +1,17 @@
-version: '3.8'
+version: '3.9'
+
+networks:
+  dynamodb_showroom:
+    name: dynamodb_showroom
+    driver: bridge
+
 services:
   dynamodb-local:
-    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data"
     image: "amazon/dynamodb-local:latest"
     container_name: dynamodb-local
+    networks:
+      - dynamodb_showroom
     ports:
       - "8000:8000"
     volumes:
@@ -13,7 +21,11 @@ services:
     depends_on:
       - dynamodb-local
     image: amazon/aws-cli
+    networks:
+      - dynamodb_showroom
     container_name: app-node
+    networks:
+      - dynamodb_tests
     ports:
      - "8080:8080"
     environment:
